@@ -1,0 +1,22 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+  cloud:
+    consul:
+      port: 8500
+      host: consul-server
+  config:
+    import: "optional:consul:${spring.cloud.consul.host}:${spring.cloud.consul.port}/"
+
+management:
+  endpoint:
+    env:
+      show-values: ALWAYS
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
